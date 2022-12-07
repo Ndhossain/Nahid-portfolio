@@ -1,30 +1,22 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
-import { HiLightBulb } from 'react-icons/hi';
-import { MdDarkMode } from 'react-icons/md';
+import ThemeChanger from './ThemeChanger';
 
 const Navbar = () => {
-    const [lightMode, setLightMode] = useState(true);
     return (
-        <div>
+        <div className='border-b-[1.5px] border-gray-900 dark:border-white sticky top-0 dark:bg-gray-900 bg-white'>
             <div className='max-w-[1024px] mx-auto px-5 py-3 flex justify-between items-center'>
                 <Link href='/' className='flex gap-2'>
-                    <h1 className='text-2xl font-bold'>Nahid Hossain</h1>
+                    <h1 className='text-2xl font-bold dark:text-white'>Nahid Hossain</h1>
                 </Link>
-                <div>
-                    <div>
-                        {
-                            !lightMode ? (
-                                <button type='button'>
-                                    <HiLightBulb size={24} />
-                                </button>
-                            ) : (
-                                <button type='button'>
-                                    <MdDarkMode size={24} />
-                                </button>
-                            )
-                        }
-                    </div>
+                <div className='flex gap-2 items-center'>
+                    <ul className='flex gap-3 font-bold'>
+                        <Link href='/'>Home</Link>
+                        <Link href='about'>About</Link>
+                        <Link href='projects'>Projects</Link>
+                        <Link href='blogs'>Blogs</Link>
+                    </ul>
+                    <span className='text-2xl'>|</span>
+                    <ThemeChanger />
                 </div>
             </div>
         </div>
