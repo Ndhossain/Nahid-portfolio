@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import { AiOutlineMail } from 'react-icons/ai';
 import { BiCurrentLocation } from 'react-icons/bi';
 import { BsWhatsapp } from 'react-icons/bs';
+import Education from './education';
+import Experience from './experience';
 
-const Bio = () => {
+const Bio = ({educations, experiences}) => {
+    const [isEducation, setIsEducation] = useState(true);
+
     return (
         <div className='mt-20'>
             <h1 className='text-3xl font-bold'>Bio</h1>
@@ -18,6 +23,13 @@ const Bio = () => {
                     <AiOutlineMail />2001.nahidhossain@gmail.com
                 </p>
             </div>
+            <div className='flex mt-10 justify-center'>
+                <button onClick={() => setIsEducation(true)} className='px-3 py-1 border border-white hover:bg-white hover:text-gray-900 font-bold'>Education</button>
+                <button onClick={() => setIsEducation(false)} className='px-3 py-1 border border-white hover:bg-white hover:text-gray-900 font-bold'>Experience</button>
+            </div>
+            {
+                isEducation ? <Education educations={educations} /> : <Experience experiences={experiences} />
+            }
         </div>
     );
 };

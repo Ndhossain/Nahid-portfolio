@@ -39,19 +39,19 @@ const Header = () => {
                     </p>
                 </div>
                 <div className='mt-10 flex gap-2'>
-                    <div className='hover:bg-white/20 rounded-full cursor-pointer p-2'>
+                    <div className='hover:bg-slate-900/20 dark:hover:bg-white/20 rounded-full cursor-pointer p-2'>
                         <IoLogoFacebook size={22} />
                     </div>
-                    <div className='hover:bg-white/20 rounded-full cursor-pointer p-2'>
+                    <div className='hover:bg-slate-900/20 dark:hover:bg-white/20 rounded-full cursor-pointer p-2'>
                         <AiFillLinkedin size={22} />
                     </div>
-                    <div className='hover:bg-white/20 rounded-full cursor-pointer p-2'>
+                    <div className='hover:bg-slate-900/20 dark:hover:bg-white/20 rounded-full cursor-pointer p-2'>
                         <FaGithubSquare size={22} />
                     </div>
-                    <div className='hover:bg-white/20 rounded-full cursor-pointer p-2'>
+                    <div className='hover:bg-slate-900/20 dark:hover:bg-white/20 rounded-full cursor-pointer p-2'>
                         <AiFillInstagram size={22} />
                     </div>
-                    <div className='hover:bg-white/20 rounded-full cursor-pointer p-2'>
+                    <div className='hover:bg-slate-900/20 dark:hover:bg-white/20 rounded-full cursor-pointer p-2'>
                         <SiGmail size={22} />
                     </div>
                 </div>

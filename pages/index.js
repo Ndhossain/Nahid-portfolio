@@ -1,11 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Bio from '../components/homeComps/Bio';
+import Bio from '../components/homeComps/bio';
 import Header from '../components/homeComps/header';
+import Projects from '../components/homeComps/projects';
 import myImage from '/assets/herosec1.jpg';
 
 
-export default function Home() {
+export default function Home({educationData, experienceData}) {
   return (
     <div>
       <Head>
@@ -16,7 +17,8 @@ export default function Home() {
     <div className='flex sm:flex-row flex-col-reverse justify-between mt-10'>
       <div className='sm:basis-3/4'>
         <Header />
-        <Bio />
+        <Bio educations={educationData} experiences={experienceData} />
+        <Projects />
       </div>
       <div className='sm:mt-10 sm:basis-1/4'>
           <div className='sm:sticky sm:top-[116px]'>
@@ -27,3 +29,17 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getStaticProps() {
+    const educationRes = await fetch('https://ndhossain.github.io/database/education.json');
+    const educationData = await educationRes.json();
+    const experienceRes = await fetch('https://ndhossain.github.io/database/experience.json');
+    const experienceData = await experienceRes.json();
+    return {
+      props: {
+        educationData,
+        experienceData
+      },
+    }
+}
+
