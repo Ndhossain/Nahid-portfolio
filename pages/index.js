@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Bio from '../components/homeComps/bio';
+import Contact from '../components/homeComps/contact';
 import Header from '../components/homeComps/header';
 import Projects from '../components/homeComps/projects';
 import myImage from '/assets/herosec1.jpg';
@@ -19,6 +20,7 @@ export default function Home({educationData, experienceData}) {
         <Header />
         <Bio educations={educationData} experiences={experienceData} />
         <Projects />
+        <Contact />
       </div>
       <div className='sm:mt-10 sm:basis-1/4'>
           <div className='sm:sticky sm:top-[116px]'>
