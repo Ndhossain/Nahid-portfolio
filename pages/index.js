@@ -18,7 +18,10 @@ export default function Home({educationData, experienceData}) {
     <div className='flex sm:flex-row flex-col-reverse justify-between mt-10'>
       <div className='sm:basis-3/4'>
         <Header />
-        <Bio educations={educationData} experiences={experienceData} />
+        <Bio 
+          educations={educationData} 
+          experiences={experienceData} 
+        />
         <Projects />
         <Contact />
       </div>
