@@ -4,6 +4,7 @@ import Bio from '../components/homeComps/bio';
 import Contact from '../components/homeComps/contact';
 import Header from '../components/homeComps/header';
 import Projects from '../components/homeComps/projects';
+import { loadEducation, loadExperience, loadProjects } from '../lib/getLoadedData';
 import myImage from '/assets/herosec1.jpg';
 
 
@@ -37,15 +38,10 @@ export default function Home({educationData, experienceData, projectsData}) {
 }
 
 export async function getStaticProps() {
-    let dev = process.env.NODE_ENV !== 'production';
-    let { DEV_URL, PROD_URL } = process.env;
     try {
-      const educationRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/education`);
-      const educationData = await educationRes.json();
-      const experienceRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/experience`);
-      const experienceData = await experienceRes.json();
-      const projectsRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/projects`);
-      const projectsData = await projectsRes.json();
+      const educationData = await loadEducation();
+      const experienceData = await loadExperience();
+      const projectsData = await loadProjects();
       return {
         props: {
           educationData,

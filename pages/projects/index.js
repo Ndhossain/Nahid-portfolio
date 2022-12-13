@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { loadProjects } from "../../lib/getLoadedData";
 
 const Projects = ({projectsData}) => {
     const openInNewTab = (url) => {
@@ -51,11 +52,8 @@ const Projects = ({projectsData}) => {
 export default Projects;
 
 export async function getStaticProps() {
-    let dev = process.env.NODE_ENV !== 'production';
-    let { DEV_URL, PROD_URL } = process.env;
     try {
-        const projectsRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/projects`);
-        const projectsData = await projectsRes.json();
+        const projectsData = await loadProjects();
         return {
             props: {
                 projectsData,

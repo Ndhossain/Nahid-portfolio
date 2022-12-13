@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Bio from "../../components/homeComps/bio";
+import { loadEducation, loadExperience } from "../../lib/getLoadedData";
 
 const About = ({educationData, experienceData}) => {
     return (
@@ -20,15 +21,9 @@ const About = ({educationData, experienceData}) => {
 export default About;
 
 export async function getStaticProps() {
-    let dev = process.env.NODE_ENV !== 'production';
-    let { DEV_URL, PROD_URL } = process.env;
     try {
-        const educationRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/education`);
-        const educationCon = await educationRes.json();
-        const educationData = JSON.stringify(educationCon)
-        const experienceRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/experience`);
-        const experienceCon = await experienceRes.json();
-        const experienceData = JSON.stringify(experienceRes)
+        const educationData = await loadEducation();
+        const experienceData = await loadExperience();
         return {
             props: {
                 educationData,
