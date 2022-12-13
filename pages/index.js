@@ -7,7 +7,7 @@ import Projects from '../components/homeComps/projects';
 import myImage from '/assets/herosec1.jpg';
 
 
-export default function Home({educationData, experienceData, projectsData}) {
+export default function Home({educationData = [], experienceData = [], projectsData = []}) {
   return (
     <div>
       <Head>
@@ -36,11 +36,12 @@ export default function Home({educationData, experienceData, projectsData}) {
 }
 
 export async function getStaticProps() {
-    const educationRes = await fetch('https://ndhossain.github.io/database/education.json');
+    const educationRes = await fetch('http://ndhossain.github.io/database/education.json');
+    console.log(educationRes);
     const educationData = await educationRes.json();
-    const experienceRes = await fetch('https://ndhossain.github.io/database/experience.json');
+    const experienceRes = await fetch('http://ndhossain.github.io/database/experience.json');
     const experienceData = await experienceRes.json();
-    const projectsRes = await fetch('https://ndhossain.github.io/database/projects.json');
+    const projectsRes = await fetch('http://ndhossain.github.io/database/projects.json');
     const projectsData = await projectsRes.json();
     return {
       props: {
@@ -50,4 +51,3 @@ export async function getStaticProps() {
       },
     }
 }
-
