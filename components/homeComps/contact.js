@@ -6,6 +6,8 @@ const Contact = () => {
         subject: '',
         message: '',
     });
+    let dev = process.env.NODE_ENV !== 'production';
+    let { DEV_URL, PROD_URL } = process.env;
 
     const {email, subject, message} = contactData;
 

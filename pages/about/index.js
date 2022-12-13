@@ -19,20 +19,24 @@ const About = ({educationData, experienceData}) => {
 
 export default About;
 
-export async function getServerSideProps() {
-    try {
+export async function getStaticProps() {
+    let dev = process.env.NODE_ENV !== 'production';
+    let { DEV_URL, PROD_URL } = process.env;
+    // try {
         const educationRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/education`);
-        const educationData = await educationRes.json();
-        console.log(educationData);
+        const educationCon = await educationRes.json();
+        const educationData = JSON.stringify(educationCon)
         const experienceRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/experience`);
-        const experienceData = await experienceRes.json();
+        const experienceCon = await experienceRes.json();
+        const experienceData = JSON.stringify(experienceRes)
         return {
-        props: {
-            educationData,
-            experienceData,
-        },
+            props: {
+                educationData,
+                experienceData,
+            },
         }
-    } catch (error) {
-        console.log(error)
-    }
+    // } catch (error) {
+    //     console.log(error);
+    //     return error
+    // }
 }

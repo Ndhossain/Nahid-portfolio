@@ -7,6 +7,8 @@ const Projects = ({projectsData}) => {
         if (newWindow) newWindow.opener = null
     }
 
+    const {result, success} = projectsData;
+
     return (
         <div>
             <Head>
@@ -18,7 +20,7 @@ const Projects = ({projectsData}) => {
                 <h1 className="text-2xl font-bold text-center">My Projects</h1>
                 <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-between mt-5 gap-2">
                     {
-                        projectsData.map((project) => (
+                        result?.map((project) => (
                             <div key={project._id} className="basis-1/3 dark:bg-white/10 bg-gray-900/10 border-1 border-white p-2 rounded-lg">
                                 <div className="h-[200px] overflow-hidden justify-between p-1">
                                     <Image loader={() => project.img} src={project.img} alt="project image" height={200} width={600} />
@@ -49,15 +51,18 @@ const Projects = ({projectsData}) => {
 export default Projects;
 
 export async function getStaticProps() {
+    let dev = process.env.NODE_ENV !== 'production';
+    let { DEV_URL, PROD_URL } = process.env;
     try {
         const projectsRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/projects`);
         const projectsData = await projectsRes.json();
         return {
-        props: {
-            projectsData,
-        },
+            props: {
+                projectsData,
+            },
         }
     } catch (error) {
         console.log(error);
+        return error
     }
 }
