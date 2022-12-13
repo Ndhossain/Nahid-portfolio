@@ -3,10 +3,11 @@ import Image from 'next/image';
 import React from 'react';
 
 const Experience = ({experiences}) => {
+    const {result, success} = experiences;
     return (
         <div>
             {
-                experiences?.map((data) => (
+                result?.map((data) => (
                     <motion.div
                         className="flex sm:flex-row flex-col p-4 mt-5 border border-gray-900 dark:border-white gap-3 items-center hover:shadow-xl dark:shadow-white/10" key={data._id}
                         initial={{ opacity: 0 }}

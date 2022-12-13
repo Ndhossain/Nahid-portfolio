@@ -7,7 +7,8 @@ import Projects from '../components/homeComps/projects';
 import myImage from '/assets/herosec1.jpg';
 
 
-export default function Home({educationData = [], experienceData = [], projectsData = []}) {
+export default function Home({educationData, experienceData, projectsData}) {
+  console.log(educationData);
   return (
     <div>
       <Head>
@@ -36,11 +37,16 @@ export default function Home({educationData = [], experienceData = [], projectsD
 }
 
 export async function getStaticProps() {
-    const educationRes = await fetch('http://ndhossain.github.io/database/education.json');
+    let dev = process.env.NODE_ENV !== 'production';
+    let { DEV_URL, PROD_URL } = process.env;
+
+    console.log(dev)
+
+    const educationRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/education`);
     const educationData = await educationRes.json();
-    const experienceRes = await fetch('http://ndhossain.github.io/database/experience.json');
+    const experienceRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/experience`);
     const experienceData = await experienceRes.json();
-    const projectsRes = await fetch('http://ndhossain.github.io/database/projects.json');
+    const projectsRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/projects`);
     const projectsData = await projectsRes.json();
     return {
       props: {
