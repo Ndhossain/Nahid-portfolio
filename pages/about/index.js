@@ -22,7 +22,7 @@ export default About;
 export async function getStaticProps() {
     let dev = process.env.NODE_ENV !== 'production';
     let { DEV_URL, PROD_URL } = process.env;
-    // try {
+    try {
         const educationRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/education`);
         const educationCon = await educationRes.json();
         const educationData = JSON.stringify(educationCon)
@@ -35,8 +35,8 @@ export async function getStaticProps() {
                 experienceData,
             },
         }
-    // } catch (error) {
-    //     console.log(error);
-    //     return error
-    // }
+    } catch (error) {
+        console.log(error);
+        return error
+    }
 }
