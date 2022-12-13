@@ -37,7 +37,6 @@ export default function Home({educationData = [], experienceData = [], projectsD
 
 export async function getStaticProps() {
     const educationRes = await fetch('http://ndhossain.github.io/database/education.json');
-    console.log(educationRes);
     const educationData = await educationRes.json();
     const experienceRes = await fetch('http://ndhossain.github.io/database/experience.json');
     const experienceData = await experienceRes.json();
