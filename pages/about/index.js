@@ -21,10 +21,10 @@ export default About;
 
 export async function getServerSideProps() {
     try {
-        const educationRes = await fetch('https://ndhossain.github.io/database/education.json');
+        const educationRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/education`);
         const educationData = await educationRes.json();
         console.log(educationData);
-        const experienceRes = await fetch('https://ndhossain.github.io/database/experience.json');
+        const experienceRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/experience`);
         const experienceData = await experienceRes.json();
         return {
         props: {

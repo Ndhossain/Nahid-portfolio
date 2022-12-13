@@ -49,11 +49,15 @@ const Projects = ({projectsData}) => {
 export default Projects;
 
 export async function getStaticProps() {
-    const projectsRes = await fetch('https://ndhossain.github.io/database/projects.json');
-    const projectsData = await projectsRes.json();
-    return {
-      props: {
-        projectsData,
-      },
+    try {
+        const projectsRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/projects`);
+        const projectsData = await projectsRes.json();
+        return {
+        props: {
+            projectsData,
+        },
+        }
+    } catch (error) {
+        console.log(error);
     }
 }

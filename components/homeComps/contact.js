@@ -14,7 +14,7 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('/api/contact', {
+            const res = await fetch(`${dev ? DEV_URL : PROD_URL}/api/contact`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
