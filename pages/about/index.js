@@ -19,15 +19,20 @@ const About = ({educationData, experienceData}) => {
 
 export default About;
 
-export async function getStaticProps() {
-    const educationRes = await fetch('https://ndhossain.github.io/database/education.json');
-    const educationData = await educationRes.json();
-    const experienceRes = await fetch('https://ndhossain.github.io/database/experience.json');
-    const experienceData = await experienceRes.json();
-    return {
-      props: {
-        educationData,
-        experienceData,
-      },
+export async function getServerSideProps() {
+    try {
+        const educationRes = await fetch('https://ndhossain.github.io/database/education.json');
+        const educationData = await educationRes.json();
+        console.log(educationData);
+        const experienceRes = await fetch('https://ndhossain.github.io/database/experience.json');
+        const experienceData = await experienceRes.json();
+        return {
+        props: {
+            educationData,
+            experienceData,
+        },
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
