@@ -8,6 +8,8 @@ const Projects = ({projectsData}) => {
         if (newWindow) newWindow.opener = null
     }
 
+    console.log(process.env.PROD_URL);
+
     const {result, success} = projectsData;
 
     return (

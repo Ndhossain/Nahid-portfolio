@@ -9,7 +9,6 @@ import myImage from '/assets/herosec1.jpg';
 
 
 export default function Home({educationData, experienceData, projectsData}) {
-  console.log(educationData);
   return (
     <div>
       <Head>
