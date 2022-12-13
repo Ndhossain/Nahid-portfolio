@@ -36,7 +36,7 @@ export default function Home({educationData, experienceData, projectsData}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     try {
       const educationData = await loadEducation();
       const experienceData = await loadExperience();

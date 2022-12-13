@@ -8,8 +8,6 @@ const Projects = ({projectsData}) => {
         if (newWindow) newWindow.opener = null
     }
 
-    console.log(process.env.PROD_URL);
-
     const {result, success} = projectsData;
 
     return (
@@ -53,7 +51,7 @@ const Projects = ({projectsData}) => {
 
 export default Projects;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     try {
         const projectsData = await loadProjects();
         return {

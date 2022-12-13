@@ -20,7 +20,7 @@ const About = ({educationData, experienceData}) => {
 
 export default About;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     try {
         const educationData = await loadEducation();
         const experienceData = await loadExperience();
