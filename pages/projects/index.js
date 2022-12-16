@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import { loadProjects } from "../../lib/getLoadedData";
 
 const Projects = ({projectsData}) => {
     const openInNewTab = (url) => {
@@ -52,15 +51,13 @@ const Projects = ({projectsData}) => {
 export default Projects;
 
 export async function getServerSideProps() {
-    try {
-        const projectsData = await loadProjects();
-        return {
-            props: {
-                projectsData,
-            },
-        }
-    } catch (error) {
-        console.log(error);
-        return error
+    let dev = process.env.NODE_ENV !== 'production';
+    let { DEV_URL, PROD_URL } = process.env;
+    const projectsRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/projects`);
+    const projectsData = await projectsRes.json();
+    return {
+        props: {
+            projectsData,
+        },
     }
 }

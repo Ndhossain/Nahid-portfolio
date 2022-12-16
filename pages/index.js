@@ -37,18 +37,19 @@ export default function Home({educationData, experienceData, projectsData}) {
 }
 
 export async function getServerSideProps() {
-    try {
-      const educationData = await loadEducation();
-      const experienceData = await loadExperience();
-      const projectsData = await loadProjects();
-      return {
-        props: {
-          educationData,
-          experienceData,
-          projectsData,
-        },
-      }
-    } catch (error) {
-      console.log(error)
+    let dev = process.env.NODE_ENV !== 'production';
+    let { DEV_URL, PROD_URL } = process.env;
+    const educationRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/education`);
+    const educationData = await educationRes.json();
+    const experienceRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/experience`);
+    const experienceData = await experienceRes.json();
+    const projectsRes = await fetch(`${dev ? DEV_URL : PROD_URL}/api/projects`);
+    const projectsData = await projectsRes.json();
+    return {
+      props: {
+        educationData,
+        experienceData,
+        projectsData,
+      },
     }
 }
